@@ -128,8 +128,246 @@ $('div#content').html('<h1>You just downloaded a million dollars</h1>');
 
 				</section><!-- End of Vue Section -->
 
+				<!-- start angular 2 here -->
+				<section>
+					
+					<!-- intro slide -->
+					<section data-background="#1949A4">
+						<h1>Welcome Angular2</h1>
+						<img class="plain" src="img/angular.png">
+					</section>
+					<!-- end intro slide -->
+					
+					<!--  slide 2 -->
+					<section>
+						<h2>So what is Angular 2?</h2>
+
+						<ul>
+							<li class="fragment">MV* framework for building complex applications in the browser (and beyond).</li>
+							<li class="fragment">Adds a Component based architecture to your applications</li>
+							<li class="fragment">Used to deliver fast rendering and data management for your frontend</li>
+						</ul>
+						<br><br>
+
+						<div class="fragment">
+							<a href="https://angular.io/">https://angular.io/</a> | 
+							<a href="http://learnangular2.com/">http://learnangular2.com/</a> |
+							<a href="http://courses.angularclass.com/">angularclass.com (Scott Moss)</a>
+						</div>
+						
+					</section>
+					<!-- end slide 2 -->
+
+					<!--  slide 3 -->
+					<section>
+						<h2>What Angular 2 looks like</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'notification',
+  template: '<div>{{ message }} <button (click)="dismiss()">close</button></div>'
+})
+export class Notification {
+  constructor() {
+    this.message = 'You have logged in'
+  }
+  dismiss() {
+    this.message = '';
+  }
+}
+					</code></pre>
+
+					<pre class="fragment"><code class="hljs" data-trim contenteditable>
+<notification></notification>
+					</code></pre>
+
+					<h4 class="fragment">ES6 + Typescript</h4>
+					</section>
+					<!-- end slide 3 -->
+
+					<!-- start slide 4 -->
+					<section>
+						<h2>What is Typescript?</h2>		
+						<ul>
+							<li class="fragment">Brings Static Typing to Javascript</li>
+							<li class="fragment">Gives you interfaces to program against</li>
+							<li class="fragment"></li>
+						</ul>
+
+					</section>
+					<!-- end slide 4 -->
+				
+					<!-- start slide 5 -->
+						<section>
+							<h3>A closer look at Typescript</h3>
+												<pre><code class="hljs" data-trim contenteditable>
+var burger: string = 'hamburger',     // String 
+    calories: number = 300,           // Numeric
+    tasty: boolean = true;            // Boolean
+
+// Alternatively, you can omit the type declaration:
+// var burger = 'hamburger';
+
+// The function expects a string and an integer.
+// It doesn't return anything so the type of the function itself is void.
+
+function speak(food: string, energy: number): void {
+  console.log("Our " + food + " has " + energy + " calories.");
+}
+
+speak(burger, calories);
+					</code></pre>
+					<a href="http://tutorialzine.com/2016/07/learn-typescript-in-30-minutes/">learn typescript in 30 mins</a>
+				
+					<!-- end slide 5 -->
+				</section>
+				
+				<!-- start slide 6 -->
+				<section>
+					<h3>Yumm....Interfaces</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+// Here we define our Food interface, its properties, and their types.
+interface Food {
+    name: string;
+    calories: number;
+}
+
+// We tell our function to expect an object that fulfills the Food interface. 
+// This way we know that the properties we need will always be available.
+function speak(food: Food): void{
+  console.log("Our " + food.name + " has " + food.calories + " calories.");
+}
+
+// We define an object that has all of the properties the Food interface expects.
+// Notice that types will be inferred automatically.
+var ice_cream = {
+  name: "ice cream", 
+  calories: 200
+}
+
+speak(ice_cream);
+					</code></pre>
+				</section><!-- end slide 6 -->
+				
+				<!-- start slide 7 -->
+				<section>
+						<h3>Classier Classes</h3>
+						<pre><code class="hljs" data-trim contenteditable>
+class Menu {
+// Our properties:
+// By default they are public, but can also be private or protected.
+  items: Array\<string\>;  // The items in the menu, an array of strings.
+  pages: number;         // How many pages will the menu be, a number.
+
+  // A straightforward constructor. 
+  constructor(item_list: Array\<string\>, total_pages: number) {
+    // The this keyword is mandatory.
+    this.items = item_list;    
+    this.pages = total_pages;
+  }
 
 
+}
+						</code></pre>
+
+					</section>
+					<!-- end slide 7 -->
+
+				<section>
+					<h2>More Advanced features</h2>
+					<ul>
+						<li>Generics</li>
+						<li>Modules</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>How do I get started?</h2>
+					<iframe class="strech" width="560" height="315" src="https://www.youtube.com/embed/SK2lHEflaz0" frameborder="0" allowfullscreen></iframe>
+					<p><a href="https://github.com/angular/quickstart">https://github.com/angular/quickstart</a></p>
+				</section>
+
+				<section>
+					<h3>A closer look at the basic setup - Part One</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+
+  <!-- Component magic happens here -->
+    <my-app>Loading AppComponent content here ...</my-app>
+					</code></pre>
+					<h5 class="fragment">Where's the angular? 😤</h5>
+				</section>
+				
+				<section>
+					<h3>Part 2...Where is Angular? 🤔</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+//----> systemjs.config.js
+ map: {
+  // our app is within the app folder
+  app: 'app',
+
+  // angular bundles
+  '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
+  '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
+  '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+  '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+  '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+  '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
+  '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+  '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+
+  // other libraries
+  'rxjs':                      'npm:rxjs',
+  'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+},
+					</code></pre>
+					<h5 class="fragment">Found it 😃</h5>
+				</section>
+
+				<section>
+				<h3>Part 3..Configuration with app/main.ts</h3>
+						<pre><code class="hljs" data-trim contenteditable>
+// packages tells the System loader how to load when no filename and/or no extension
+    packages: {
+      app: {
+        main: './main.js',
+        defaultExtension: 'js'
+      },
+      rxjs: {
+        defaultExtension: 'js'
+      }
+    }
+					</code></pre>
+				</section>
+
+				<section>
+				<h3>Basic Component</h3>
+										<pre><code class="hljs" data-trim contenteditable>
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  template: `<h1>Hello {{name}}</h1>`,
+})
+export class AppComponent  { name = 'Angular'; }
+					</code></pre>
+				</section>
+
+				</section><!-- end angular 2 content-->
+					
+	
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
